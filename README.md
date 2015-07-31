@@ -1,4 +1,4 @@
-## Ish
+# Ish
 
 Ish is a stupid library that allows you to test if a variable is `true-ish` or
 `false-ish`.
@@ -21,3 +21,20 @@ if 'Yup' == True-ish:
 ```
 
 It also does some things I haven't documented yet.
+
+## Running Tests
+
+Install [tox](). Run `tox` in the top-level directory. This should run the
+tests against Python 2.7 and 3.1
+
+## Contributing to Ish
+
+Contributions are received with love and enthusiasm! That said, if you would
+like to contribute to ish, please follow some basic guidelines:
+
+* We like `PEP-8`. Not in an aggressive way, but you should follow PEP-8 98%
+  of the time.
+* Run the tests before you commit, and make sure they pass.
+* Please write some unit tests for any added functionality.
+
+:heart:
