@@ -1,3 +1,5 @@
+from os.path import dirname, join as join_path
+
 import numpy as np
 
 import lasagne
@@ -11,7 +13,7 @@ import cv2
 from deep_neural_network import dnn_architecture
 
 
-DNN_MODEL_PATH = 'dnn_model/dnn'
+DNN_MODEL_PATH = join_path(dirname(__file__), 'dnn_model/dnn')
 
 
 EMOTIONS = [
@@ -66,7 +68,7 @@ def detect_and_predict_face(frame):
     global _face_cascade
 
     if _face_cascade is None:
-        _face_cascade = cv2.CascadeClassifier('face_detector/haarcascade_frontalface_alt.xml')
+        _face_cascade = cv2.CascadeClassifier(join_path(dirname(__file__), 'face_detector/haarcascade_frontalface_alt.xml'))
 
     grey = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
