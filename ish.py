@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from __future__ import print_function
 
 import sys
@@ -55,6 +56,7 @@ class UnIshable(Exception):
     def __init__(self, value):
         super(UnIshable, self).__init__('{!r} can not be ished!'.format(value))
 
+
 class Maybe(ValueError):
     def __init__(self, value):
         super(Maybe, self).__init__('Maybe! ({!r} is not recognised)'.format(value))
@@ -98,22 +100,18 @@ class BoolIsh(BaseIsh):
 
         return result == self._value
 
-trueish = BoolIsh(True)
-falseish = BoolIsh(False)
-
 
 @functools.total_ordering
 class NumberIsh(BaseIsh):
-    def __init__(self, value, precision=0.2):
+    def __init__(self, value, precision=0.20001):
         super(NumberIsh, self).__init__(value)
 
-        self._min = value * (1 - precision)
-        self._max = value * (1 + precision)
+        self._min = value - precision
+        self._max = value + precision
 
     def _to_number(self, obj):
         if isinstance(obj, numbers.Real):
             return obj
-
         try:
             return float(obj)
         except (TypeError, ValueError):
@@ -167,9 +165,9 @@ class Ish(object):
 
     def __rsub__(self, other):
         if other is True:
-            return trueish
+            return BoolIsh(True)
         if other is False:
-            return falseish
+            return BoolIsh(False)
         if isinstance(other, numbers.Real):
             return NumberIsh(other)
         if isinstance(other, basestring):
@@ -178,6 +176,7 @@ class Ish(object):
 
     def __repr__(self):
         return 'ish'
+
 
 ish = ish.ish = sys.modules[__name__] = Ish()
 
