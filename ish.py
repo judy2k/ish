@@ -25,7 +25,7 @@ TRUE_STRINGS = {
     'sim',  # Portuguese
     'sea',  # Irish
     'jes',  # Esperanto
-    u'ﻦﻌﻣ', # Arabic
+    u'نعم'.lower(), # Arabic
 }
 FALSE_STRINGS = {
     'false', 'no', 'off', 'nope', 'nah', 'narp',

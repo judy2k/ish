@@ -19,7 +19,7 @@ def test_true_ish():
 
 
 def test_true_ish_unicode():
-    mine = u'نعم'
+    mine = u'نعم'.lower()
     assert mine == True-ish
 
 
