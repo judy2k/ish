@@ -22,10 +22,14 @@ if 'Yup' == True-ish:
 
 It also does some things I haven't documented yet.
 
+## Compatibility
+
+Ish is compatible with Python 2.7, 3.3+ and PyPy.
+
 ## Running Tests
 
 Install [tox](). Run `tox` in the top-level directory. This should run the
-tests against Python 2.7 and 3.1
+tests against all supported Python versions.
 
 ## Contributing to Ish
 
