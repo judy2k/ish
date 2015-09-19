@@ -47,6 +47,18 @@ ANGRY_STRINGS = {
     'anger',
     'grrr',
 }
+SAD_STRINGS = {
+    'sad',
+    'depressed',
+    'emo',
+}
+SURPRISE_STRINGS = {
+    'surprise',
+    'shock',
+    'omg',
+    'omfg',
+    'amazeballs',
+}
 NEUTRAL_STRINGS = {
     'neutral',
 }
@@ -132,8 +144,10 @@ class EmotionIsh(BaseIsh):
         if detect_and_predict_face_emotion:
             super(EmotionIsh, self).__init__(value)
             normalized = normalize_string(value)
-            for (type, keywords) in ((3, HAPPY_STRINGS),
-                                     (0, ANGRY_STRINGS),
+            for (type, keywords) in ((0, ANGRY_STRINGS),
+                                     (3, HAPPY_STRINGS),
+                                     (4, SAD_STRINGS),
+                                     (5, SURPRISE_STRINGS),
                                      (6, NEUTRAL_STRINGS)):
                 if normalized in keywords:
                     self._type = type
