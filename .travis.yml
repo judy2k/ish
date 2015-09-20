@@ -1,22 +1,24 @@
 language: python
-python: 2.7
 sudo: false
-env:
-  global:
-    LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
-  matrix:
-    - TOXENV=py26
-    - TOXENV=py27
-    - TOXENV=py33
-    - TOXENV=py34
+
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "pypy"
+
 before_install:
   - python --version
   - uname -a
   - lsb_release -a
+
 install:
   - pip install tox
+
 script:
-  - tox -v
+  - tox -v -e $(echo $TRAVIS_PYTHON_VERSION | sed 's/^\([0-9]\)\.\([0-9]\).*/py\1\2/')
+
 notifications:
   email:
     on_success: never
