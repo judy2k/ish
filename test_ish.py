@@ -39,7 +39,7 @@ def test_number_ish():
     assert 0.6 > 0-ish
     assert '0.2' == 0-ish
     assert 0.4 == 0.5-ish
-    assert 100.2 == 100-ish
+    assert 120 == 100-ish
     assert Decimal('1.2') == 1-ish
     assert Fraction('6/5') == 1-ish
 
