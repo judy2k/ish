@@ -37,30 +37,26 @@ FALSE_STRINGS = {
 }
 STRIP_CHARS = string.whitespace + string.punctuation
 
-HAPPY_STRINGS = {
-    'happy',
-    'happy-face',
-    'joyful',
-}
-ANGRY_STRINGS = {
-    'angry',
-    'anger',
-    'grrr',
-}
-SAD_STRINGS = {
-    'sad',
-    'depressed',
-    'emo',
-}
-SURPRISE_STRINGS = {
-    'surprise',
-    'shock',
-    'omg',
-    'omfg',
-    'amazeballs',
-}
-NEUTRAL_STRINGS = {
-    'neutral',
+EMOTIONAL_STRINGS = {
+    'happy':      3,
+    'happy-face': 3,
+    'joyful':     3,
+
+    'angry':      0,
+    'anger':      0,
+    'grrr':       0,
+
+    'sad':        4,
+    'depressed':  4,
+    'emo':        4,
+
+    'surprise':   5,
+    'shock':      5,
+    'omg':        5,
+    'omfg':       5,
+    'amazeballs': 5,
+
+    'neutral':    6,
 }
 
 
@@ -144,16 +140,13 @@ class EmotionIsh(BaseIsh):
         if detect_and_predict_face_emotion:
             super(EmotionIsh, self).__init__(value)
             normalized = normalize_string(value)
-            for (type, keywords) in ((0, ANGRY_STRINGS),
-                                     (3, HAPPY_STRINGS),
-                                     (4, SAD_STRINGS),
-                                     (5, SURPRISE_STRINGS),
-                                     (6, NEUTRAL_STRINGS)):
-                if normalized in keywords:
-                    self._type = type
-                    return
 
-        raise UnIshable(value)
+            try:
+                self._type = EMOTIONAL_STRINGS[normalized]
+            except KeyError:
+                raise UnIshable(value)
+        else:
+            raise UnIshable(value)
 
     def _is_image(self, img):
         try:
