@@ -178,10 +178,8 @@ class Ish(object):
     Maybe = Maybe
 
     def __rsub__(self, other):
-        if other is True:
-            return BoolIsh(True)
-        if other is False:
-            return BoolIsh(False)
+        if isinstance(other, bool):
+            return BoolIsh(other)
         if isinstance(other, numbers.Real):
             return NumberIsh(other)
         if isinstance(other, basestring):
