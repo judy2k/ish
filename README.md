@@ -1,5 +1,7 @@
 # Ish
 
+[![Build Status](https://travis-ci.org/judy2k/ish.svg?branch=master)](https://travis-ci.org/judy2k/ish)
+
 Ish is a stupid library that allows you to test if a variable is `true-ish` or
 `false-ish`.
 
