@@ -115,15 +115,13 @@ class BoolIsh(BaseIsh):
 
 @functools.total_ordering
 class NumberIsh(BaseIsh):
-    def __init__(self, value, precision=0.20001):
+    def __init__(self, value, precision=0.2):
         super(NumberIsh, self).__init__(value)
 
-        self._min = value - precision
-        self._max = value + precision
+        self._min = min(value - precision, value * (1 - precision))
+        self._max = max(value + precision, value * (1 + precision))
 
     def _to_number(self, obj):
-        if isinstance(obj, numbers.Real):
-            return obj
         try:
             return float(obj)
         except (TypeError, ValueError):
