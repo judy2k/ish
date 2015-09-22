@@ -1,0 +1,7 @@
+[run]
+source = ish
+
+[report]
+show_missing = true
+precision = 0
+omit = *migrations*
