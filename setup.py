@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-from setuptools import setup
-from setuptools.command.test import test as TestCommand
+from setuptools import setup, Command
 
 REQUIREMENTS = []
 
@@ -10,9 +9,8 @@ TEST_REQUIREMENTS = [
     "pytest>=2.7.2",
 ]
 
-class PyTest(TestCommand):
-    test_args = []
-    test_suite = True
+class PyTest(Command):
+    user_options = []
 
     def initialize_options(self):
         pass
@@ -20,7 +18,7 @@ class PyTest(TestCommand):
     def finalize_options(self):
         pass
 
-    def run_tests(self):
+    def run(self):
         import pytest
         sys.exit(pytest.main([]))
 
@@ -35,7 +33,6 @@ setup(
 
     classifiers=[
         "Development Status :: 4 - Beta",
-        "License :: OSI Approved :: MIT License",
         "License :: Public Domain",
         "Natural Language :: English",
         "Operating System :: OS Independent",
