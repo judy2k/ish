@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
-
 from __future__ import print_function
 
 import sys
 import string
 import numbers
 import functools
+import unicodedata
 
 try:
     from deep_neural_network.face_classifier import detect_and_predict_face_emotion
@@ -17,25 +16,35 @@ try:
 except NameError:
     basestring = (str, bytes)
 
+ENCODINGS = (
+    # Unicode with BOM
+    'utf-8-sig', 'utf-32', 'utf-16',
+    # Unicode without BOM
+    'utf-8', 'utf-32le', 'utf-32be', 'utf-16le', 'utf-16be',
+    # Arabic
+    'iso-8859-6', 'cp720', 'cp1256',
+)
 
-TRUE_STRINGS = {
+STRIP_CHARS = string.whitespace + string.punctuation
+
+BOOL_STRINGS = {}
+BOOL_STRINGS.update((s, True) for s in (
     'true', 'yes', 'on', 'yeah', 'yup', 'yarp',
     'oui',  # French
     'ja',   # German, Danish, Dutch, Afrikaans, Swedish, Norwegian
     'sim',  # Portuguese
     'sea',  # Irish
     'jes',  # Esperanto
-    u'نعم'.lower(), # Arabic
-}
-FALSE_STRINGS = {
+    u'\u0646\u0639\u0645', # Arabic
+))
+BOOL_STRINGS.update((s, False) for s in (
     'false', 'no', 'off', 'nope', 'nah', 'narp',
     'non',   # French
     'nein',  # German
     'nej',   # Danish
     'nee',   # Dutch
-    u'ﻷ',    # Arabic
-}
-STRIP_CHARS = string.whitespace + string.punctuation
+    u'\u0644\u0623', # Arabic
+))
 
 EMOTIONAL_STRINGS = {
     'happy':      3,
@@ -70,10 +79,21 @@ class Maybe(ValueError):
         super(Maybe, self).__init__('Maybe! ({!r} is not recognised)'.format(value))
 
 
-def normalize_string(s):
+def lookup_decoded_string(s, mapping):
+    return mapping[unicodedata.normalize('NFKC', s).strip(STRIP_CHARS).lower()]
+
+def lookup_encoded_string(s, mapping):
+    for encoding in ENCODINGS:
+        try:
+            return lookup_decoded_string(s.decode(encoding), mapping)
+        except (UnicodeDecodeError, KeyError):
+            pass
+    raise KeyError(s)
+
+def lookup_string(s, mapping):
     if isinstance(s, bytes):
-        s = s.decode('utf-8', 'replace')
-    return s.strip(STRIP_CHARS).lower()
+        return lookup_encoded_string(s, mapping)
+    return lookup_decoded_string(s, mapping)
 
 
 class BaseIsh(object):
@@ -86,19 +106,13 @@ class BaseIsh(object):
 
 class BoolIsh(BaseIsh):
     def _check_string(self, s):
-        normalized = normalize_string(s)
-
         try:
-            return bool(int(normalized))
+            return bool(int(s))
         except ValueError:
-            pass
-
-        if normalized in TRUE_STRINGS:
-            return True
-        if normalized in FALSE_STRINGS:
-            return False
-
-        raise Maybe(s)
+            try:
+                return lookup_string(s, BOOL_STRINGS)
+            except KeyError:
+                raise Maybe(s)
 
     def __eq__(self, other):
         result = bool(other)
@@ -137,10 +151,8 @@ class EmotionIsh(BaseIsh):
     def __init__(self, value):
         if detect_and_predict_face_emotion:
             super(EmotionIsh, self).__init__(value)
-            normalized = normalize_string(value)
-
             try:
-                self._type = EMOTIONAL_STRINGS[normalized]
+                self._type = lookup_string(value, EMOTIONAL_STRINGS)
             except KeyError:
                 raise UnIshable(value)
         else:

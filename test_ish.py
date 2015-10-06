@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import print_function
 import pytest
 from decimal import Decimal
 from fractions import Fraction
@@ -19,8 +16,22 @@ def test_true_ish():
 
 
 def test_true_ish_unicode():
-    mine = u'نعم'.lower()
-    assert mine == True-ish
+    assert u'\ufee6\ufecc\ufee3' == True-ish
+
+
+def test_charset_detection():
+    # UTF-8
+    assert b'\xef\xbb\xa6\xef\xbb\x8c\xef\xbb\xa3' == True-ish
+    # UTF-16
+    assert b'\xff\xfe\xe6\xfe\xcc\xfe\xe3\xfe' == True-ish
+    # UTF-32
+    assert b'\xff\xfe\x00\x00\xe6\xfe\x00\x00\xcc\xfe\x00\x00\xe3\xfe\x00\x00' == True-ish
+    # ISO-8859-6
+    assert b'\xe6\xd9\xe5' == True-ish
+    # CP720
+    assert b'\xeb\xe3\xea' == True-ish
+    # CP1256
+    assert b'\xe4\xda\xe3' == True-ish
 
 
 def test_extra_chars():
