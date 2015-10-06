@@ -1,6 +1,8 @@
 # Ish
 
 [![Build Status](https://travis-ci.org/judy2k/ish.svg?branch=master)](https://travis-ci.org/judy2k/ish)
+[![Coverage Status](https://coveralls.io/repos/judy2k/ish/badge.svg?branch=master&service=github)](https://coveralls.io/github/judy2k/ish?branch=master)
+[![Code Health](https://landscape.io/github/judy2k/ish/master/landscape.svg?style=flat)](https://landscape.io/github/judy2k/ish/master)
 
 Ish is a stupid library that allows you to test if a variable is `true-ish` or
 `false-ish`.
