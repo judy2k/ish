@@ -11,40 +11,38 @@ TEST_REQUIREMENTS = [
 ]
 
 class PyTest(TestCommand):
-    user_options = []
+    test_args = []
+    test_suite = True
 
     def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = []
+        pass
 
     def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
+        pass
 
     def run_tests(self):
         import pytest
-        errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
+        sys.exit(pytest.main([]))
 
 setup(
     name='ish',
     version="0.0.0",
     description="Make Python more like more sensible languages.",
-    url="https://github.com/judy2k/fictionary",
+    url="https://github.com/judy2k/ish",
 
     author="Mark Smith",
     author_email="<mark.smith@practicalpoetry.co.uk>",
 
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Environment :: Console",
         "License :: OSI Approved :: MIT License",
+        "License :: Public Domain",
         "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
     ],
