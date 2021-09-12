@@ -21,14 +21,14 @@ a `ValueError`
 
 ```python
 if 'Yup' == True-ish:
-    print 'True-ish!'
+    print('True-ish!')
 ```
 
 It also does some things I haven't documented yet.
 
 ## Compatibility
 
-Ish is compatible with Python 2.7, 3.3+ and PyPy.
+Ish is compatible with Python 3.6+.
 
 ## Running Tests
 
