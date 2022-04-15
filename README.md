@@ -13,8 +13,9 @@ the value to see if it either:
 
 1. Evaluates to `True`
 2. Is a string containing the English, French, German, Danish, Dutch,
-   Afrikaans, Swedish, Norwegian, Portuguese, Irish, Esperanto or Arabic for
-   either `Yes` or `No` (or a handful of slang words with the same meaning).
+   Afrikaans, Swedish, Norwegian, Portuguese, Irish, Esperanto, Arabic or
+   Polish for either `Yes` or `No` (or a handful of slang words with the same 
+   meaning).
 
 If it is a string containing none of these known words, it raises
 a `ValueError`

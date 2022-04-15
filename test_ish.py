@@ -13,6 +13,7 @@ def test_true_ish():
     assert 'Yarp' == True-ish
     assert 'Yeah' == True-ish_
     assert 'yup' == True-ish_
+    assert 'tak' == True-ish_
 
 
 def test_true_ish_unicode():
@@ -43,6 +44,7 @@ def test_false_ish():
     assert 'Narp' == False-ish
     assert 'Nah' == False-ish
     assert '' == False-ish
+    assert 'nie' == False-ish
 
 
 def test_number_ish():

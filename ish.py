@@ -24,6 +24,7 @@ BOOL_STRINGS.update(
         "sea",  # Irish
         "jes",  # Esperanto
         u"\u0646\u0639\u0645".lower(),  # Arabic
+        "tak",  # Polish
     )
 )
 
@@ -41,6 +42,7 @@ BOOL_STRINGS.update(
         "nej",  # Danish
         "nee",  # Dutch
         u"\u0644\u0623".lower(),  # Arabic
+        "nie",  # Polish
     )
 )
 
