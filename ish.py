@@ -23,6 +23,7 @@ BOOL_STRINGS.update(
         "sim",  # Portuguese
         "sea",  # Irish
         "jes",  # Esperanto
+        "si", "sí", "sì", # Italian
         u"\u0646\u0639\u0645".lower(),  # Arabic
     )
 )
