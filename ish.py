@@ -19,7 +19,7 @@ BOOL_STRINGS.update(
         "yup",
         "yarp",
         "oui",  # French
-        "ja",  # German, Danish, Dutch, Afrikaans, Swedish, Norwegian
+        "ja",  # German, Danish, Swedish, Dutch, Afrikaans, Norwegian
         "sim",  # Portuguese
         "sea",  # Irish
         "jes",  # Esperanto
