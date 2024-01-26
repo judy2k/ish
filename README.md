@@ -12,8 +12,8 @@ or `False` to create a TrueIsh or FalseIsh object. This can be compared with
 the value to see if it either:
 
 1. Evaluates to `True`
-2. Is a string containing the English, French, German, Danish, Dutch,
-   Afrikaans, Swedish, Norwegian, Portuguese, Irish, Esperanto or Arabic for
+2. Is a string containing the English, French, German, Danish, Swedish, Dutch,
+   Afrikaans, Norwegian, Portuguese, Irish, Esperanto, Arabic or Hungarian for
    either `Yes` or `No` (or a handful of slang words with the same meaning).
 
 If it is a string containing none of these known words, it raises
