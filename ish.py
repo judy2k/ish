@@ -19,12 +19,14 @@ BOOL_STRINGS.update(
         "yup",
         "yarp",
         "oui",  # French
-        "ja",  # German, Danish, Dutch, Afrikaans, Swedish, Norwegian
+        "ja",  # German, Danish, Swedish, Dutch, Afrikaans, Norwegian
         "sim",  # Portuguese
         "sea",  # Irish
         "jes",  # Esperanto
         "si", "sí", "sì", # Italian
         u"\u0646\u0639\u0645".lower(),  # Arabic
+        "igen",  # Hungarian
+        "igaz",  # Hungarian
     )
 )
 
@@ -39,9 +41,16 @@ BOOL_STRINGS.update(
         "narp",
         "non",  # French
         "nein",  # German
-        "nej",  # Danish
+        "nej",  # Danish, Swedish
         "nee",  # Dutch
+        "geen",  # Afrikaans
+        "nei",  # Norwegian
+        "não",  # Portugese
+        "níl",  # Irish
+        "ne",  # Esperanto
         u"\u0644\u0623".lower(),  # Arabic
+        "nem",  # Hungarian
+        "hamis",  # Hungarian
     )
 )
 
